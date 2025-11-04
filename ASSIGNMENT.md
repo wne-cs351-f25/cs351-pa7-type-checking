@@ -81,7 +81,7 @@ Give your answer as a type expression in the format used by TYPE1 (e.g., `[int=>
 ### ANSWER
 
 ```
-your answer here
+[int=>int]
 ```
 
 ## Q3: Identifying Type Errors
@@ -95,7 +95,11 @@ if add1(0) then +(4,5) else {let p=proc():int 9 in p}
 ### ANSWER
 
 ```
-your answer here
+There are two type errors in this expression:
+
+1. The test condition `add1(0)` returns type `int` (specifically the value 1), but an if-expression requires a `bool` type for its test condition. The add1 primitive has type [int=>int], so add1(0) evaluates to an integer, not a boolean.
+
+2. The then-branch `+(4,5)` has type `int` (evaluates to 9), while the else-branch `{let p=proc():int 9 in p}` has type `[=>int]` (a procedure taking no arguments and returning an int). In TYPE1, both branches of an if-expression must have the same type, but here we have a type mismatch between int and [=>int].
 ```
 
 ## Q4: Creating Type Error Examples
@@ -105,43 +109,45 @@ Below are the type errors that TYPE1's checker detects. For each error, create a
 ### An attempt to define a procedure whose declared return type does not match the type of the body of the procedure
 
 ```
-
+proc(x:int):bool +(x,1)
 ```
 
 ### An attempt to apply a non-procedure as a procedure
 
 ```
-
+let x = 5 in .x(3)
 ```
 
 ### An attempt to apply a procedure to the wrong number of actual parameters
 
 ```
-
+let f = proc(x:int,y:int):int +(x,y) in .f(5)
 ```
 
 ### An attempt to apply a procedure to actual parameters whose types do not match the declared types of the corresponding formal parameters
 
 ```
-
+let f = proc(x:int):int add1(x) in .f(true)
 ```
 
 ### An attempt to use a non-boolean as the test in an if statement
 
 ```
-
+if 42 then 1 else 0
 ```
 
 ### An attempt to have expressions of different types in the then and else parts of an if statement
 
 ```
-
+if true then 42 else false
 ```
 
 ### An attempt to assign a value to a LHS variable in a set expression where the type of the variable does not match the type of the RHS expression
 
 ```
-
+declare x : int
+define x = 0
+set x = true
 ```
 
 ## Additional Exercises (Optional)

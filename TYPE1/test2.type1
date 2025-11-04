@@ -1,0 +1,2 @@
+% Error: Applying non-procedure as procedure
+let x = 5 in .x(3)

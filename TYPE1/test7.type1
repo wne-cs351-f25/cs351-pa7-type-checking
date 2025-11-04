@@ -1,0 +1,4 @@
+% Error: Type mismatch in set expression
+declare x : int
+define x = 0
+set x = true

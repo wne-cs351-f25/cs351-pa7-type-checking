@@ -1,0 +1,2 @@
+% Error: Different types in then and else branches
+if true then 42 else false

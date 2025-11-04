@@ -1,0 +1,2 @@
+% Error: Wrong number of actual parameters
+let f = proc(x:int,y:int):int +(x,y) in .f(5)

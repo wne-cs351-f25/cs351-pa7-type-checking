@@ -1,0 +1,2 @@
+% Error: Procedure return type doesn't match body type
+proc(x:int):bool +(x,1)

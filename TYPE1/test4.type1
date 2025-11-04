@@ -1,0 +1,2 @@
+% Error: Type mismatch in actual parameters
+let f = proc(x:int):int add1(x) in .f(true)
